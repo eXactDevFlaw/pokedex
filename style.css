@@ -1,0 +1,31 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Hover-Effekt für Karten */
+.card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 20px; /* Abstand von unten */
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Header */
+header {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+/* Karten Abstand */
+#content {
+    justify-content: center; /* Zentriert Karten horizontal */
+}

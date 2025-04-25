@@ -1,32 +1,28 @@
-async function init(){
-    checkData();
+let loadStart = 0;
+let loadCount = 20;
+let DB = [];
+
+const contentRef = document.getElementById("content");
+
+async function init() {
+  getData();
 }
 
-async function getData(){
-    let response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0");
-    return await response.json();    
+async function getData(loadStart, loadCount) {
+  let response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${loadCount}&offset=${loadStart}"`);
+  let responseJson = await response.json();
+  DB = responseJson.results;
+  getRawData(DB);
 }
 
-async function checkData(){
-    try {
-        let pokemons = await getData();
-        let entries = Object.entries(pokemons.results);
-        console.log(entries)
-        console.log(pokemons)
-    } catch (error) {
-        console.log("Error bei den Daten:", error);   
-    }
+function getRawData(DB) {
+  DB.forEach(async element => {
+    let data = await fetch(element.url);
+    let rawData = await data.json();
+    renderCards(rawData)
+  });
 }
 
-function renderCards(pokemons){
-    let contentRef = document.getElementById("content");
-    contentRef.innerHTML = "";
-
-    for (const key of pokemons) {
-        console.log(key)
-    }
-
-    pokemons.forEach(pokemon => {
-        contentRef.innerHTML += getCardTemplate(pokemon)
-    });
+function renderCards(pokemon){
+    contentRef.innerHTML += getCardTemplate(pokemon)
 }
