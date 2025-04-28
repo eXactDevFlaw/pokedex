@@ -24,5 +24,24 @@ function getRawData(DB) {
 }
 
 function renderCards(pokemon){
-    contentRef.innerHTML += getCardTemplate(pokemon)
+    let types = getPokemonType(pokemon)
+    console.log(types)
+    console.log(pokemon)
+    contentRef.innerHTML += getCardTemplate(pokemon, types)
+}
+
+async function renderMore(){
+  loadStart = (loadStart + 20)
+  console.log(loadStart, loadCount)
+  await getData(loadStart, loadCount);
+}
+
+async function getPokemonType(rawData) {
+  let typeData = rawData.types  
+  typeData.forEach(element => {
+    let data = element.type.name;
+    console.log(data)
+    return data;
+  });
+  
 }
