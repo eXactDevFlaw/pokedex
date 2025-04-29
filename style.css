@@ -14,8 +14,71 @@ body {
 }
 
 .card-body-img {
-    width: 180px;
+    object-fit: cover;
+    width: 100px;
 }
+
+.bg-normal{
+    background-color: aliceblue !important;
+}
+.bg-fighting{
+    background-color: green !important;
+}
+.bg-flying{
+    background-color: green !important;
+}
+.bg-poison{
+    background-color: rgb(0, 99, 41) !important;
+}
+.bg-ground{
+    background-color: brown !important;
+}
+.bg-rock{
+    background-color: grey !important;
+}
+.bg-bug{
+    background-color: lawngreen !important;
+}
+.bg-ghost{
+    background-color: darkgrey!important;
+}
+.bg-steel{
+    background-color: steelblue !important;
+}
+.bg-fire{
+    background-color: red !important;
+}
+.bg-water{
+    background-color: blue !important;
+}
+.bg-grass{
+    background-color: green !important;
+}
+.bg-electric{
+    background-color: yellow !important;
+}
+.bg-psychic{
+    background-color: green !important;
+}
+.bg-ice{
+    background-color: green !important;
+}
+.bg-dragon{
+    background-color: green !important;
+}
+.bg-dark{
+    background-color: green !important;
+}
+.bg-fairy{
+    background-color: green !important;
+}
+.bg-stellar{
+    background-color: green !important;
+}
+.bg-unkown{
+    background-color: green !important;
+}
+
 
 /* Header */
 header {
