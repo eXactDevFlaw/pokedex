@@ -5,22 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokédex</title>
     <link rel="icon" type="image/x-icon" href="./assets/icon/favicon.png">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./styles/standart.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./styles/cards.css">
 </head>
-<body onload="initData()" class="bg-light">
-    <header class="bg-primary text-white text-center py-3">
+<body onload="initData()">
+    <header class="">
         <h1>Pokédex</h1>
         <p></p>
     </header>
-    <main class="container my-5">
-        <div id="content" class="row g-4">
-        </div>
+    <main>
+        <div id="detail" class="detail d_none"></div>
+        <div id="content" class="content max_width_1440"></div>
         <button onclick="renderMore()">Load More</button>
     </main>
-    <footer class="bg-dark text-white text-center py-3">
+    <footer class="">
         <p>&copy; 2025 Pokédex | Entwickelt von Lutz Bölling</p>
     </footer>
 </body>

@@ -43,6 +43,10 @@ h4 {
     display: flex;
 }
 
+.d_grid {
+    display: grid;
+}
+
 .no_scroll {
     overflow: hidden;
 }
@@ -51,7 +55,12 @@ h4 {
     pointer-events: none;
 }
 
-.max_width_960px {
+.max_width_960 {
     max-width: 960px;
+    margin: 0 auto;
+}
+
+.max_width_1440 {
+    max-width: 1440px;
     margin: 0 auto;
 }

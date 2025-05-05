@@ -4,6 +4,7 @@ let DB = [];
 let DB_SORTED = [];
 
 const contentRef = document.getElementById("content");
+const detailRef = document.getElementById("detail");
 
 async function initData(loadStart, loadCount) {
   await fetchData(loadStart, loadCount);
@@ -28,18 +29,17 @@ async function bufferData() {
     delete element.url;
   });
   await Promise.all(promises);
-  console.log(DB)
 }
 
 function sortBuffer() {
   DB_SORTED = new Array(DB.length);
   DB.forEach((element) => {
-    DB_SORTED[element.pokeData.id -1] = element;
+    DB_SORTED[element.pokeData.id - 1] = element;
   });
 }
 
 function renderCards() {
-  DB_SORTED.forEach(element => {
+  DB_SORTED.forEach((element) => {
     contentRef.innerHTML += getCardTemplate(element);
   });
 }
@@ -50,9 +50,15 @@ async function renderMore() {
 }
 
 function getIconSrc(data) {
-  if(data !== ""){
-    return `./assets/icon/types/${data}.svg`
-  }else{
+  if (data !== "") {
+    return `./assets/icon/types/${data}.svg`;
+  } else {
     return ``;
   }
+}
+
+function renderDetail(id) {
+  detailRef.classList.remove("d_none")
+  console.log(id)
+  console.log(DB_SORTED)
 }
