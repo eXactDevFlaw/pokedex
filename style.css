@@ -15,6 +15,9 @@ header {
     width: 100%;
     justify-content: center;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
 header h1{
@@ -28,6 +31,37 @@ header img{
     margin: 0px 20px 0px 0px;
 }
 
+header input{
+    position: absolute;
+    right: 100px;
+    border-radius: 30px;
+    height: 50px;
+    width: 300px;
+    padding: 12px 16px;
+    font-size: 16px;
+}
+
+main {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+main button {
+    background-color: #082029;
+    color: white;
+    height: 50px;
+    width: 200px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 16px 0px 16px 0px;
+}
+
+main button:hover{
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+}
+
 footer {
     height: 150px;
     width: 100%;
@@ -37,6 +71,8 @@ footer {
     justify-content: center;
     align-items: center;
 }
+
+
 
 .content {
     display: flex;

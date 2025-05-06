@@ -1,24 +1,13 @@
-function getCardTemplate(data) {
-
-  let typesHtml = '';
-  if (data.pokeData.types && data.pokeData.types.length > 0) {
-    typesHtml += `<img src="${getIconSrc(data.pokeData.types[0]?.type.name || '')}" alt="${data.pokeData.types[0]?.type.name || ''}">`;
-    if (data.pokeData.types.length > 1) {
-      typesHtml += `<img src="${getIconSrc(data.pokeData.types[1]?.type.name || '')}" alt="${data.pokeData.types[1]?.type.name || ''}">`;
-    }
-  }
+function getCardTemplate(data, icons) {
   return /*HTML*/ `
     <div class="cards">
-      <div class="card d-flex bg-${data.pokeData.types[0].type.name}">
+      <div class="card d-flex bg-${data.pokeData.types[0].type.name}" onclick="renderDetails(${data.pokeData.id})">
         <div class="card-body d_flex">
-          <h5 class="card-title">#${data.pokeData.id} ${data.pokeData.name}</h5>
+          <h3 class="card-title">#${data.pokeData.id} ${data.pokeData.name}</h3>
           <img src="${data.pokeData.sprites.other.dream_world.front_default}">
         </div>
         <div class="card-class d_flex">
-          ${typesHtml}
-        </div>
-        <div class="card-button d-flex">
-          <button class="btn btn-primary btn-sm" onclick="renderDetail(${data.pokeData.id})">More Informations</button>
+          ${icons}
         </div>
       </div>
     </div>`;

@@ -14,8 +14,9 @@
     <header class="d_flex">
         <img src="./assets/img/pokeball-seeklogo.png" alt="Pokeball">
         <h1>Pokédex</h1>
+        <input type="search" name="searchbar" id="searchbar" placeholder="search ... ( min 3 letters )" required minlength="3">
     </header>
-    <main>
+    <main class="d_flex">
         <div id="detail" class="detail d_none"></div>
         <div id="content" class="content max_width_1440"></div>
         <button onclick="renderMore()">Load More</button>

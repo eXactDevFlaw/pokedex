@@ -39,8 +39,15 @@ function sortBuffer() {
 }
 
 function renderCards() {
-  DB_SORTED.forEach((element) => {
-    contentRef.innerHTML += getCardTemplate(element);
+  DB_SORTED.forEach((data) => {
+    let icons = '';
+      if (data.pokeData.types && data.pokeData.types.length > 0) {
+          icons += `<img src="${getIconSrc(data.pokeData.types[0]?.type.name || '')}">`;
+      if (data.pokeData.types.length > 1) {
+         icons += `<img src="${getIconSrc(data.pokeData.types[1]?.type.name || '')}">`;
+      }
+    }
+    contentRef.innerHTML += getCardTemplate(data, icons);
   });
 }
 
@@ -57,7 +64,7 @@ function getIconSrc(type) {
   }
 }
 
-function renderDetail(id) {
+function renderDetails(id) {
   detailRef.classList.remove("d_none")
   console.log(id)
   console.log(DB_SORTED)

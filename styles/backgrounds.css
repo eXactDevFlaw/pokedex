@@ -1,5 +1,5 @@
 .bg-normal {
-    background-color: aliceblue;
+    background-color: rgba(240, 248, 255, 0.25);
 }
 
 .bg-fighting {
@@ -7,31 +7,31 @@
 }
 
 .bg-flying {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.25);
 }
 
 .bg-poison {
-    background-color: rgba(0, 99, 41, 0.25);
+    background-color: rgba(255, 0, 149, 0.25);
 }
 
 .bg-ground {
-    background-color: brown;
+    background-color: rgba(165, 42, 42, 0.25);
 }
 
 .bg-rock {
-    background-color: grey;
+    background-color: rgba(128, 128, 128, 0.25);
 }
 
 .bg-bug {
-    background-color: lawngreen;
+    background-color: rgba(124, 252, 0, 0.25);
 }
 
 .bg-ghost {
-    background-color: darkgrey;
+    background-color: rgba(169, 169, 169, 0.25);
 }
 
 .bg-steel {
-    background-color: steelblue;
+    background-color: rgba(70, 130, 180, 0.25);
 }
 
 .bg-fire {
@@ -39,7 +39,7 @@
 }
 
 .bg-water {
-    background-color: blue;
+    background-color: rgba(0, 0, 255, 0.25);
 }
 
 .bg-grass {
@@ -47,33 +47,33 @@
 }
 
 .bg-electric {
-    background-color: yellow;
+    background-color: rgba(255, 255, 0, 0.63);
 }
 
 .bg-psychic {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.25);
 }
 
 .bg-ice {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.25);
 }
 
 .bg-dragon {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.25);
 }
 
 .bg-dark {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.25);
 }
 
 .bg-fairy {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.25);
 }
 
 .bg-stellar {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.25);
 }
 
 .bg-unkown {
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0.25);
 }
