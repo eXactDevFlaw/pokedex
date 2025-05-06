@@ -1,12 +1,15 @@
 .cards {
-    min-height: 300px;
-    min-width: 250px; 
+    width: 250px;
+    height: 300px;
 }
 
 .card {
+    height: 100%;
     transition: transform 0.3s, box-shadow 0.3s;
     border-radius: 10px;
     margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .card:hover {
@@ -14,74 +17,25 @@
     box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
 }
 
-.card-body-img {
-    object-fit: cover;
-    width: 100px;
+.card-body {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 16px;
 }
 
-.class-icons{
+.card-body img {
+    height: 150px;
+    width: 100%;
+}
+
+.card-class {
     align-items: center;
     justify-content: center;
-    width: 50px;
+    gap: 16px;
 }
 
-.bg-normal{
-    background-color: aliceblue;
-}
-.bg-fighting{
-    background-color: rgba(0, 128, 0, 0.25);
-}
-.bg-flying{
-    background-color: green;
-}
-.bg-poison{
-    background-color: rgba(0, 99, 41, 0.25);
-}
-.bg-ground{
-    background-color: brown;
-}
-.bg-rock{
-    background-color: grey;
-}
-.bg-bug{
-    background-color: lawngreen;
-}
-.bg-ghost{
-    background-color: darkgrey;
-}
-.bg-steel{
-    background-color: steelblue;
-}
-.bg-fire{
-    background-color: rgba(255, 0, 0, 0.25);
-}
-.bg-water{
-    background-color: blue;
-}
-.bg-grass{
-    background-color: rgba(2, 196, 12, 0.507);
-}
-.bg-electric{
-    background-color: yellow;
-}
-.bg-psychic{
-    background-color: green;
-}
-.bg-ice{
-    background-color: green;
-}
-.bg-dragon{
-    background-color: green;
-}
-.bg-dark{
-    background-color: green;
-}
-.bg-fairy{
-    background-color: green;
-}
-.bg-stellar{
-    background-color: green;
-}
-.bg-unkown{
-    background-color: green;
+.card-class img {
+    margin: 0px;
+    width: 50px;
 }

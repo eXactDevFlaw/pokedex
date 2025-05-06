@@ -49,9 +49,9 @@ async function renderMore() {
   await initData(loadStart, loadCount);
 }
 
-function getIconSrc(data) {
-  if (data !== "") {
-    return `./assets/icon/types/${data}.svg`;
+function getIconSrc(type) {
+  if (type !== "") {
+    return `./assets/icon/types/${type}.svg`;
   } else {
     return ``;
   }
