@@ -13,21 +13,60 @@ function getCardTemplate(data, icons) {
     </div>`;
 }
 
-function getDetailTemplate(data) {console.log(data)
+function getDetailTemplate(data) {
+  console.log(data)
   return /*HTML*/ `
     <div class="detail d_flex_center">
       <div class="detail-container detail-bg-${data.pokeData.types[0].type.name}">
         <div class="detail-head d_flex">
-          <h3 class="">#${data.pokeData.id} ${data.pokeData.name}</h3>
-          <button id="" onclick="">X</button>
+          <h3 class="">#${data.pokeData.id} ${capitalLetter(data.pokeData.name)}</h3>
+          <h3 class="detail-btn" onclick="closeDetail()">X</h3>
         </div>
         <div class="detail-img">
-          <img scr="${data.pokeData.sprites.other.dream_world.front_default}">
+          <img src="${data.pokeData.sprites.other.dream_world.front_default}">
         </div>
         <div class="detail-data">
-        Tabelle mit Daten
+          <div class="detail-data-table" id="data-table">
+          <table class="customTable">
+            <thead>
+              <tr>
+                <th>About</th>
+                <th>Base Stats</th>
+                <th>Evolution</th>
+                <th>Moves</th>
+              </tr>
+            </thead>
+          </div>
         </div>
       </div>
     </div>
   `;
+}
+
+function getDetailTableTemplate(){
+  return /*HTML*/`
+  <tbody>
+  <tr>
+    <td>Row 1, Cell 1</td>
+    <td>Row 1, Cell 2</td>
+    <td>Row 1, Cell 3</td>
+  </tr>
+  <tr>
+    <td>Row 2, Cell 1</td>
+    <td>Row 2, Cell 2</td>
+    <td>Row 2, Cell 3</td>
+  </tr>
+  <tr>
+    <td>Row 3, Cell 1</td>
+    <td>Row 3, Cell 2</td>
+    <td>Row 3, Cell 3</td>
+  </tr>
+  <tr>
+    <td>Row 4, Cell 1</td>
+    <td>Row 4, Cell 2</td>
+    <td>Row 4, Cell 3</td>
+  </tr>
+</tbody>
+</table>
+  `
 }
