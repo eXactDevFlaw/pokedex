@@ -77,7 +77,8 @@ function getIconSrc(type) {
 }
 
 function renderDetails(id) {
-  contentRef.classList.add("nohover")
+  document.body.classList.toggle("no_scroll")
+  contentRef.classList.toggle("no_hover")
   detailRef.classList.toggle("d_none")
   let correctID = id - 1
   detailRef.innerHTML = getDetailTemplate(DB_SORTED[correctID])
@@ -90,4 +91,10 @@ function toggleLoadingSpinner(){
 
 function capitalLetter(name){
   return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
+function closeDetail(){
+  document.body.classList.toggle("no_scroll")
+  contentRef.classList.toggle("no_hover")
+  detailRef.classList.toggle("d_none")
 }
