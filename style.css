@@ -4,7 +4,7 @@ body {
     background-color: rgb(5, 23, 30);
     display: flex;
     flex-direction: column;
-    font-family: "Figtree", sans-serif;
+    font-family: "Comic Relief", sans-serif;
     font-size: clamp(10px, 1vw, 16px);
     box-sizing: border-box;
 }
@@ -20,18 +20,20 @@ header {
     z-index: 2;
 }
 
-header h1{
+header h1 {
     margin: 0px;
     font-size: 88px;
 }
 
-header img{
+header img {
     object-fit: cover;
     height: 100px;
     margin: 0px 20px 0px 0px;
 }
 
-header input{
+header input {
+    font-family: "Comic Relief", sans-serif;
+    font-size: clamp(10px, 1vw, 16px);
     position: absolute;
     right: 100px;
     border-radius: 30px;
@@ -49,6 +51,8 @@ main {
 
 main button {
     background-color: #082029;
+    font-family: "Comic Relief", sans-serif;
+    font-size: clamp(10px, 1vw, 16px);
     color: white;
     height: 50px;
     width: 200px;
@@ -57,7 +61,7 @@ main button {
     margin: 16px 0px 16px 0px;
 }
 
-main button:hover{
+main button:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
 }
@@ -72,7 +76,38 @@ footer {
     align-items: center;
 }
 
+.loading-spinner {
+    z-index: 4;
+    margin: 0 auto;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.loading-spinner img {
+    animation: spin 5s infinite;
+    height: 200px;
+    width: auto;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-spinner span {
+    font-size: 30px;
+}
 
 .content {
     display: flex;

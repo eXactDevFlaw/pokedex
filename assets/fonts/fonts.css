@@ -1,0 +1,33 @@
+@font-face {
+  src: url('./ComicRelief-Regular.ttf') format('truetype');
+  font-family: "Comic Relief";
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  src: url('./ComicRelief-Bold.ttf') format('truetype');
+  font-family: "Comic Relief";
+  font-weight: 700;
+  font-style: normal;
+}
+
+h1 {
+  font-family: "Comic Relief", sans-serif;
+  font-size: clamp(26px, 2vw, 34px);
+}
+
+h2 {
+  font-family: "Comic Relief", sans-serif;
+  font-size: clamp(24px, 2vw, 32px);
+}
+
+h3 {
+  font-family: "Comic Relief", sans-serif;
+  font-size: clamp(18px, 2vw, 26px);
+}
+
+h4 {
+  font-family: "Comic Relief", sans-serif;
+  font-size: clamp(14px, 2vw, 22px);
+}

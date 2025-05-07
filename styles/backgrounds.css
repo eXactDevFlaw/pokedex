@@ -77,3 +77,83 @@
 .bg-unkown {
     background-color: rgba(0, 128, 0, 0.25);
 }
+
+.detail-bg-normal {
+    background-color: rgb(240, 248, 255);
+}
+
+.detail-bg-fighting {
+    background-color: rgb(0, 128, 0);
+}
+
+.detail-bg-flying {
+    background-color: rgb(0, 128, 0);
+}
+
+.detail-bg-poison {
+    background-color: rgb(255, 0, 149);
+}
+
+.detail-bg-ground {
+    background-color: rgb(165, 42, 42);
+}
+
+.detail-bg-rock {
+    background-color: rgb(128, 128, 128);
+}
+
+.detail-bg-bug {
+    background-color: rgb(124, 252, 0);
+}
+
+.detail-bg-ghost {
+    background-color: rgb(169, 169, 169);
+}
+
+.detail-bg-steel {
+    background-color: rgb(70, 130, 180);
+}
+
+.detail-bg-fire {
+    background-color: rgb(255, 0, 0);
+}
+
+.detail-bg-water {
+    background-color: rgb(0, 0, 255);
+}
+
+.detail-bg-grass {
+    background-color: rgb(2, 196, 12);
+}
+
+.detail-bg-electric {
+    background-color: rgb(255, 255, 0);
+}
+
+.detail-bg-psychic {
+    background-color: rgb(0, 128, 0);
+}
+
+.detail-bg-ice {
+    background-color: rgb(0, 128, 0);
+}
+
+.detail-bg-dragon {
+    background-color: rgb(0, 128, 0);
+}
+
+.detail-bg-dark {
+    background-color: rgb(0, 128, 0);
+}
+
+.detail-bg-fairy {
+    background-color: rgb(0, 128, 0);
+}
+
+.detail-bg-stellar {
+    background-color: rgb(0, 128, 0);
+}
+
+.detail-bg-unkown {
+    background-color: rgb(0, 128, 0);
+}

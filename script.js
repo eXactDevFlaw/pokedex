@@ -5,11 +5,14 @@ let DB_SORTED = [];
 
 const contentRef = document.getElementById("content");
 const detailRef = document.getElementById("detail");
+const loadingRef = document.getElementById("loading-spinner");
 
 async function initData(loadStart, loadCount) {
+  toggleLoadingSpinner();
   await fetchData(loadStart, loadCount);
   await bufferData();
   sortBuffer();
+  toggleLoadingSpinner();
   renderCards();
 }
 
@@ -19,7 +22,6 @@ async function fetchData(loadStart, loadCount) {
   );
   let responseJson = await response.json();
   DB = responseJson.results;
-  contentRef.innerHTML = "";
 }
 
 async function bufferData() {
@@ -28,7 +30,17 @@ async function bufferData() {
     element.pokeData = await data.json();
     delete element.url;
   });
-  await Promise.all(promises);
+  // await new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     if (promises){
+  //       resolve("Alles wurde richtig geladen!");
+  //     }else{
+  //       reject("Beim laden ist was schief gelaufen!");
+  //     }
+  //   }, 5000);
+  // })
+  /*Ausgeklammert um zu simulieren falls die API länger benötigt*/
+  await Promise.all(promises) 
 }
 
 function sortBuffer() {
@@ -65,7 +77,17 @@ function getIconSrc(type) {
 }
 
 function renderDetails(id) {
-  detailRef.classList.remove("d_none")
-  console.log(id)
-  console.log(DB_SORTED)
+  contentRef.classList.add("nohover")
+  detailRef.classList.toggle("d_none")
+  let correctID = id - 1
+  detailRef.innerHTML = getDetailTemplate(DB_SORTED[correctID])
+}
+
+function toggleLoadingSpinner(){
+  loadingRef.classList.toggle("d_none");
+  document.body.classList.toggle("no_scroll")
+}
+
+function capitalLetter(name){
+  return name.charAt(0).toUpperCase() + name.slice(1);
 }

@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="./styles/standart.css">
     <link rel="stylesheet" href="./styles/cards.css">
     <link rel="stylesheet" href="./styles/backgrounds.css">
+    <link rel="stylesheet" href="./assets/fonts/fonts.css">
+    <link rel="stylesheet" href="./styles/responsive.css">
+    <link rel="stylesheet" href="./styles/detail.css">
 </head>
 <body onload="initData()">
     <header class="d_flex">
@@ -24,6 +27,10 @@
     <footer class="">
         <p>&copy; 2025 Pokédex | Entwickelt von Lutz Bölling</p>
     </footer>
+    <div id="loading-spinner" class="loading-spinner d_none d_flex">
+        <img src="./assets/img/loading.png" alt="Pokeball">
+        <span>Loading data.. Please wait a moment!</span>
+    </div>
 </body>
 <script src="./script.js"></script>
 <script src="./scripts/templates.js"></script>

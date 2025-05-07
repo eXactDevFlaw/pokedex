@@ -3,7 +3,7 @@
     margin: 0 auto;
     scrollbar-width: thin;
     scroll-behavior: smooth;
-    scrollbar-color: rgb(255, 127, 0) rgb(0, 0, 0);
+    scrollbar-color: rgb(8, 32, 41) rgb(0, 0, 0);
 }
 
 a {
@@ -11,28 +11,8 @@ a {
     text-decoration: none;
 }
 
-h1 {
-    font-family: "Jaro", sans-serif;
-    font-size: clamp(26px, 2vw, 34px);
-}
-
-h2 {
-    font-family: "Jaro", sans-serif;
-    font-size: clamp(24px, 2vw, 32px);
-}
-
-h3 {
-    font-family: "Jaro", sans-serif;
-    font-size: clamp(18px, 2vw, 26px);
-}
-
-h4 {
-    font-family: "Jaro", sans-serif;
-    font-size: clamp(14px, 2vw, 22px);
-}
-
 .d_none {
-    display: none;
+    display: none !important;
 }
 
 .d_block {
@@ -41,6 +21,12 @@ h4 {
 
 .d_flex {
     display: flex;
+}
+
+.d_flex_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .d_grid {
@@ -64,3 +50,4 @@ h4 {
     max-width: 1440px;
     margin: 0 auto;
 }
+

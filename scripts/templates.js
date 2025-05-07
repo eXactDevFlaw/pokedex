@@ -3,7 +3,7 @@ function getCardTemplate(data, icons) {
     <div class="cards">
       <div class="card d-flex bg-${data.pokeData.types[0].type.name}" onclick="renderDetails(${data.pokeData.id})">
         <div class="card-body d_flex">
-          <h3 class="card-title">#${data.pokeData.id} ${data.pokeData.name}</h3>
+          <h4 class="card-title">#${data.pokeData.id} ${capitalLetter(data.pokeData.name)}</h4>
           <img src="${data.pokeData.sprites.other.dream_world.front_default}">
         </div>
         <div class="card-class d_flex">
@@ -13,25 +13,21 @@ function getCardTemplate(data, icons) {
     </div>`;
 }
 
-function getDetailTemplate(data) {
+function getDetailTemplate(data) {console.log(data)
   return /*HTML*/ `
-    <div class="col-md-4">
-    <div class="card h-100 shadow-sm  bg-${data.pokeData.types[0].type.name}">
-    <div class="card-body">
-      <h5 class="card-title">#${data.pokeData.id} ${data.pokeData.name}</h5>
-      <img class="card-body-img" src="${
-        data.pokeData.sprites.other.dream_world.front_default
-      }">
+    <div class="detail d_flex_center">
+      <div class="detail-container detail-bg-${data.pokeData.types[0].type.name}">
+        <div class="detail-head d_flex">
+          <h3 class="">#${data.pokeData.id} ${data.pokeData.name}</h3>
+          <button id="" onclick="">X</button>
+        </div>
+        <div class="detail-img">
+          <img scr="${data.pokeData.sprites.other.dream_world.front_default}">
+        </div>
+        <div class="detail-data">
+        Tabelle mit Daten
+        </div>
+      </div>
     </div>
-    <div class="list-group list-group-flush">
-      Types: 
-      <img src="${getIconSrc(data.pokeData.types[0]?.type.name || "")}"></img>
-      <img src="${getIconSrc(data.pokeData.types[1]?.type.name || "")}"></img>
-    </div>
-    <div class="card-footer text-center">
-      <button class="btn btn-primary btn-sm" onclick="closeDetail()">Close</button>
-    </div>
-  </div>
-</div>
   `;
 }
