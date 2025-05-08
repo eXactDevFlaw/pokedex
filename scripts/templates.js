@@ -16,7 +16,7 @@ function getCardTemplate(data, icons) {
 function getDetailTemplate(data, icons) {
   return /*HTML*/ `
     <div class="detail d_flex_center">
-      <div class="detail-container detail-bg-${data.pokeData.types[0].type.name}"  onclick="BubblingProtection(event)">
+      <div class="detail-container bg-${data.pokeData.types[0].type.name}"  onclick="BubblingProtection(event)">
         <div class="detail-head d_flex">
           <h3 class="">#${data.pokeData.id} ${capitalLetter(data.pokeData.name)}</h3>
           <h3 class="detail-btn" onclick="closeDetail()">X</h3>
