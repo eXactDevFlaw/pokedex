@@ -29,43 +29,44 @@ async function bufferData() {
     let data = await fetch(element.url);
     element.pokeData = await data.json();
     delete element.url;
+    contentRef.innerHTML = "";
   });
-  // await new Promise((resolve, reject) => {
-  //   setTimeout(() => {
-  //     if (promises){
-  //       resolve("Alles wurde richtig geladen!");
-  //     }else{
-  //       reject("Beim laden ist was schief gelaufen!");
-  //     }
-  //   }, 5000);
-  // })
-  /*Ausgeklammert um zu simulieren falls die API länger benötigt*/
-  await Promise.all(promises) 
+  await Promise.all(promises);
 }
 
 function sortBuffer() {
-  DB_SORTED = new Array(DB.length);
   DB.forEach((element) => {
-    DB_SORTED[element.pokeData.id - 1] = element;
+    DB_SORTED.push(element);
   });
 }
 
 function renderCards() {
-  DB_SORTED.forEach((data) => {
-    let icons = '';
-      if (data.pokeData.types && data.pokeData.types.length > 0) {
-          icons += `<img src="${getIconSrc(data.pokeData.types[0]?.type.name || '')}">`;
-      if (data.pokeData.types.length > 1) {
-         icons += `<img src="${getIconSrc(data.pokeData.types[1]?.type.name || '')}">`;
-      }
-    }
+  for (let i = 0; i < DB_SORTED.length; i++) {
+    let data = DB_SORTED[i];
+    let icons = renderIcons(data);
     contentRef.innerHTML += getCardTemplate(data, icons);
-  });
+  }
+}
+
+function renderIcons(data) {
+  let icons = "";
+  if (data.pokeData.types && data.pokeData.types.length > 0) {
+    icons += `<img src="${getIconSrc(
+      data.pokeData.types[0]?.type.name || ""
+    )}">`;
+    if (data.pokeData.types.length > 1) {
+      icons += `<img src="${getIconSrc(
+        data.pokeData.types[1]?.type.name || ""
+      )}">`;
+    }
+  }
+  return icons;
 }
 
 async function renderMore() {
-  loadCount = loadCount + 20;
+  loadStart = loadStart + 20;
   await initData(loadStart, loadCount);
+  scrollBottom();
 }
 
 function getIconSrc(type) {
@@ -77,24 +78,37 @@ function getIconSrc(type) {
 }
 
 function renderDetails(id) {
-  document.body.classList.toggle("no_scroll")
-  contentRef.classList.toggle("no_hover")
-  detailRef.classList.toggle("d_none")
-  let correctID = id - 1
-  detailRef.innerHTML = getDetailTemplate(DB_SORTED[correctID])
+  document.body.classList.toggle("no_scroll");
+  contentRef.classList.toggle("no_hover");
+  detailRef.classList.toggle("d_none");
+  let correctID = id - 1;
+  let data = DB_SORTED[correctID];
+  let icons = renderIcons(data);
+  detailRef.innerHTML = getDetailTemplate(data, icons);
 }
 
-function toggleLoadingSpinner(){
+function toggleLoadingSpinner() {
   loadingRef.classList.toggle("d_none");
-  document.body.classList.toggle("no_scroll")
+  document.body.classList.toggle("no_scroll");
 }
 
-function capitalLetter(name){
+function capitalLetter(name) {
   return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
-function closeDetail(){
-  document.body.classList.toggle("no_scroll")
-  contentRef.classList.toggle("no_hover")
-  detailRef.classList.toggle("d_none")
+function closeDetail() {
+  document.body.classList.toggle("no_scroll");
+  contentRef.classList.toggle("no_hover");
+  detailRef.classList.toggle("d_none");
+}
+
+function scrollBottom() {
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "instant",
+  });
+}
+
+function BubblingProtection(event){
+  event.stopPropagation();
 }

@@ -29,6 +29,7 @@ header img {
     object-fit: cover;
     height: 100px;
     margin: 0px 20px 0px 0px;
+    scroll-behavior: initial;
 }
 
 header input {
