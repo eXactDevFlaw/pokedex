@@ -1,7 +1,10 @@
 let loadStart = 0;
 let loadCount = 20;
-let DB = [];
-let DB_SORTED = [];
+let latestRenderIndex = 0;
+let fetchedData = {
+  raw: [],
+  sorted: [],
+};
 
 const contentRef = document.getElementById("content");
 const detailRef = document.getElementById("detail");
@@ -17,35 +20,40 @@ async function initData(loadStart, loadCount) {
 }
 
 async function fetchData(loadStart, loadCount) {
-  let response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/?limit=${loadCount}&offset=${loadStart}"`
-  );
-  let responseJson = await response.json();
-  DB = responseJson.results;
+  try {
+    let response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/?limit=${loadCount}&offset=${loadStart}`
+    );
+    let responseJson = await response.json();
+    fetchedData.raw = responseJson.results;
+  } catch (error) {
+    console.error("Fehler beim Abrufen der Daten:", error);
+    alert("Fehler beim Laden der Daten. Bitte versuche es später erneut!");
+  }
 }
 
 async function bufferData() {
-  let promises = DB.map(async (element) => {
+  let promises = fetchedData.raw.map(async (element) => {
     let data = await fetch(element.url);
     element.pokeData = await data.json();
     delete element.url;
-    contentRef.innerHTML = "";
   });
   await Promise.all(promises);
 }
 
 function sortBuffer() {
-  DB.forEach((element) => {
-    DB_SORTED.push(element);
+  fetchedData.raw.forEach((element) => {
+    fetchedData.sorted.push(element);
   });
 }
 
 function renderCards() {
-  for (let i = 0; i < DB_SORTED.length; i++) {
-    let data = DB_SORTED[i];
+  for (let i = latestRenderIndex; i < fetchedData.sorted.length; i++) {
+    let data = fetchedData.sorted[i];
     let icons = renderIcons(data);
     contentRef.innerHTML += getCardTemplate(data, icons);
   }
+  latestRenderIndex = fetchedData.sorted.length
 }
 
 function renderIcons(data) {
@@ -66,7 +74,7 @@ function renderIcons(data) {
 async function renderMore() {
   loadStart = loadStart + 20;
   await initData(loadStart, loadCount);
-  scrollBottom();
+  renderCards(loadStart)  
 }
 
 function getIconSrc(type) {
@@ -82,9 +90,43 @@ function renderDetails(id) {
   contentRef.classList.toggle("no_hover");
   detailRef.classList.toggle("d_none");
   let correctID = id - 1;
-  let data = DB_SORTED[correctID];
+  let data = fetchedData.sorted[correctID];
   let icons = renderIcons(data);
-  detailRef.innerHTML = getDetailTemplate(data, icons);
+  let aboutData = getDetailData(data);
+  let baseStats = getBaseStats(data);
+  detailRef.innerHTML = getDetailTemplate(data, icons, aboutData, baseStats);
+}
+
+function getDetailData(data){
+  let aboutData = {
+    height: data.pokeData.height,
+    weight: data.pokeData.weight,
+    abilities: "",
+  }
+
+  if (data.pokeData.abilities && data.pokeData.abilities.length > 0) {
+    for (let i = 0; i < data.pokeData.abilities.length; i++) {
+      aboutData.abilities += data.pokeData.abilities[i].ability.name;
+      if (i < data.pokeData.abilities.length - 1) {
+        aboutData.abilities += ", ";
+      }
+    }
+  } else {
+    // Fallback, falls keine Fähigkeiten vorhanden sind
+    aboutData.abilities = "No abilities found";
+  }
+  return aboutData;
+}
+
+function getBaseStats(data){
+  let baseStats = [];
+  for (let i = 0; i < data.pokeData.stats.length; i++){
+    baseStats.push({
+      name: data.pokeData.stats[i].stat.name,
+      value: data.pokeData.stats[i].base_stat,
+    })
+  }
+  return baseStats;
 }
 
 function toggleLoadingSpinner() {
@@ -100,13 +142,6 @@ function closeDetail() {
   document.body.classList.toggle("no_scroll");
   contentRef.classList.toggle("no_hover");
   detailRef.classList.toggle("d_none");
-}
-
-function scrollBottom() {
-  window.scrollTo({
-    top: document.body.scrollHeight,
-    behavior: "instant",
-  });
 }
 
 function BubblingProtection(event){

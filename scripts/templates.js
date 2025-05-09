@@ -13,7 +13,7 @@ function getCardTemplate(data, icons) {
     </div>`;
 }
 
-function getDetailTemplate(data, icons) {
+function getDetailTemplate(data, icons, aboutData, baseStats) {
   return /*HTML*/ `
     <div class="detail d_flex_center">
       <div class="detail-container bg-${data.pokeData.types[0].type.name}"  onclick="BubblingProtection(event)">
@@ -28,47 +28,19 @@ function getDetailTemplate(data, icons) {
           </div>          
         </div>
         <div class="detail-data">
-          <div class="detail-data-table" id="data-table">
-          <table class="customTable">
-            <thead>
-              <tr>
-                <th>About</th>
-                <th>Base Stats</th>
-                <th>Evolution</th>
-                <th>Moves</th>
-              </tr>
-            </thead>
+          <div class="detail-navigation">
+            <h4 class="detail-tab">About</h4>
+            <h4 class="detail-tab">BaseStats</h4>
+            <h4 class="detail-tab">Evolution</h4>
+            <h4 class="detail-tab">Moves</h4>
           </div>
+          <div class="detail-content" id="about">
+          <p><strong>Height:</strong> ${aboutData.height}</p>
+          <p><strong>Weight:</strong> ${aboutData.weight}</p>
+          <p><strong>Abilities:</strong> ${aboutData.abilities}</p>
+        </div>
         </div>
       </div>
     </div>
   `;
-}
-
-function getDetailTableTemplate(){
-  return /*HTML*/`
-  <tbody>
-  <tr>
-    <td>Row 1, Cell 1</td>
-    <td>Row 1, Cell 2</td>
-    <td>Row 1, Cell 3</td>
-  </tr>
-  <tr>
-    <td>Row 2, Cell 1</td>
-    <td>Row 2, Cell 2</td>
-    <td>Row 2, Cell 3</td>
-  </tr>
-  <tr>
-    <td>Row 3, Cell 1</td>
-    <td>Row 3, Cell 2</td>
-    <td>Row 3, Cell 3</td>
-  </tr>
-  <tr>
-    <td>Row 4, Cell 1</td>
-    <td>Row 4, Cell 2</td>
-    <td>Row 4, Cell 3</td>
-  </tr>
-</tbody>
-</table>
-  `
 }
