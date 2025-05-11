@@ -24,12 +24,16 @@
         <div id="content" class="content max_width_1440"></div>
         <button onclick="renderMore()">Load More</button>
     </main>
-    <footer class="">
+    <footer id="footer">
         <p>&copy; 2025 Pokédex | Entwickelt von Lutz Bölling</p>
     </footer>
     <div id="loading-spinner" class="loading-spinner d_none d_flex">
         <img src="./assets/img/loading.png" alt="Pokeball">
         <span>Loading data.. Please wait a moment!</span>
+    </div>
+    <div class="arrow-div">
+        <img class="arrow-up" src="./assets/icon/arrow.svg" alt="arrow up" onclick="windowUp()">
+        <img class="arrow-down" src="./assets/icon/arrow.svg" alt="arrow down" onclick="windowDown()">
     </div>
 </body>
 <script src="./script.js"></script>

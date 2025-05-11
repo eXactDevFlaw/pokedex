@@ -13,7 +13,8 @@ function getCardTemplate(data, icons) {
     </div>`;
 }
 
-function getDetailTemplate(data, icons, aboutData, baseStats) {
+function getDetailTemplate(data, icons, aboutData, baseStats, movesData) {
+  console.log(data)
   return /*HTML*/ `
     <div class="detail d_flex_center">
       <div class="detail-container bg-${data.pokeData.types[0].type.name}"  onclick="BubblingProtection(event)">
@@ -29,18 +30,35 @@ function getDetailTemplate(data, icons, aboutData, baseStats) {
         </div>
         <div class="detail-data">
           <div class="detail-navigation">
-            <h4 class="detail-tab">About</h4>
-            <h4 class="detail-tab">BaseStats</h4>
-            <h4 class="detail-tab">Evolution</h4>
-            <h4 class="detail-tab">Moves</h4>
+            <div class="detail-tab active">About</div>
+            <div class="detail-tab">Base Stats</div>
+            <div class="detail-tab">Names</div>
+            <div class="detail-tab">Moves</div>
           </div>
-          <div class="detail-content" id="about">
-          <p><strong>Height:</strong> ${aboutData.height}</p>
-          <p><strong>Weight:</strong> ${aboutData.weight}</p>
-          <p><strong>Abilities:</strong> ${aboutData.abilities}</p>
-        </div>
+          <div class="detail-content">${getAboutTemplate(aboutData)}</div>
+          <div class="detail-content d_none">${getBaseStatsTemplate(baseStats)}</div>
+          <div class="detail-content d_none">Names</div>
+          <div class="detail-content detail-moves d_none">${movesData}</div>
         </div>
       </div>
     </div>
+  `;
+}
+
+function getAboutTemplate(aboutData) {
+  return /*HTML*/`
+    <div>
+      <p><strong>Height:</strong> ${aboutData.height}</p>
+      <p><strong>Weight:</strong> ${aboutData.weight}</p>
+      <p><strong>Abilities:</strong> ${aboutData.abilities}</p>
+    </div>
+  `;
+}
+
+function getBaseStatsTemplate(baseStats) {
+  return /*HTML*/`
+    <ul>
+      ${baseStats.map((stat) => `<li><strong>${capitalLetter(stat.name)}:</strong> ${stat.value}</li>`).join("")}
+    </ul>
   `;
 }

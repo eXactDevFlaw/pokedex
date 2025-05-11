@@ -9,6 +9,7 @@ let fetchedData = {
 const contentRef = document.getElementById("content");
 const detailRef = document.getElementById("detail");
 const loadingRef = document.getElementById("loading-spinner");
+const footerRef = document.getElementById("footer");
 
 async function initData(loadStart, loadCount) {
   toggleLoadingSpinner();
@@ -28,7 +29,6 @@ async function fetchData(loadStart, loadCount) {
     fetchedData.raw = responseJson.results;
   } catch (error) {
     console.error("Fehler beim Abrufen der Daten:", error);
-    alert("Fehler beim Laden der Daten. Bitte versuche es später erneut!");
   }
 }
 
@@ -53,28 +53,25 @@ function renderCards() {
     let icons = renderIcons(data);
     contentRef.innerHTML += getCardTemplate(data, icons);
   }
-  latestRenderIndex = fetchedData.sorted.length
+  latestRenderIndex = fetchedData.sorted.length;
 }
 
 function renderIcons(data) {
-  let icons = "";
-  if (data.pokeData.types && data.pokeData.types.length > 0) {
-    icons += `<img src="${getIconSrc(
-      data.pokeData.types[0]?.type.name || ""
-    )}">`;
-    if (data.pokeData.types.length > 1) {
-      icons += `<img src="${getIconSrc(
-        data.pokeData.types[1]?.type.name || ""
-      )}">`;
+  let iconsHTML = "";
+  const types = data.pokeData.types;
+  if (types && types.length > 0) {
+    iconsHTML += `<img src="${getIconSrc(types[0].type.name)}">`;
+    if (types.length > 1) {
+      iconsHTML += `<img src="${getIconSrc(types[1].type.name)}">`;
     }
   }
-  return icons;
+  return iconsHTML;
 }
 
 async function renderMore() {
   loadStart = loadStart + 20;
   await initData(loadStart, loadCount);
-  renderCards(loadStart)  
+  renderCards(loadStart);
 }
 
 function getIconSrc(type) {
@@ -94,15 +91,17 @@ function renderDetails(id) {
   let icons = renderIcons(data);
   let aboutData = getDetailData(data);
   let baseStats = getBaseStats(data);
-  detailRef.innerHTML = getDetailTemplate(data, icons, aboutData, baseStats);
+   let movesData = getMovesData(data); // Moves List
+  detailRef.innerHTML = getDetailTemplate(data, icons, aboutData, baseStats, movesData);
+  setupTabs();
 }
 
-function getDetailData(data){
+function getDetailData(data) {
   let aboutData = {
     height: data.pokeData.height,
     weight: data.pokeData.weight,
     abilities: "",
-  }
+  };
 
   if (data.pokeData.abilities && data.pokeData.abilities.length > 0) {
     for (let i = 0; i < data.pokeData.abilities.length; i++) {
@@ -112,21 +111,30 @@ function getDetailData(data){
       }
     }
   } else {
-    // Fallback, falls keine Fähigkeiten vorhanden sind
     aboutData.abilities = "No abilities found";
   }
   return aboutData;
 }
 
-function getBaseStats(data){
+function getBaseStats(data) {
   let baseStats = [];
-  for (let i = 0; i < data.pokeData.stats.length; i++){
+  for (let i = 0; i < data.pokeData.stats.length; i++) {
     baseStats.push({
       name: data.pokeData.stats[i].stat.name,
       value: data.pokeData.stats[i].base_stat,
-    })
+    });
   }
   return baseStats;
+}
+
+function getMovesData(data) {
+  let moves = data.pokeData.moves
+  let movesHTML = "";
+  for (let i = 0; i < moves.length; i++) {
+    const element = moves[i].move.name;
+    movesHTML += `<li><strong>${capitalLetter(element)}</li>`
+  }
+  return movesHTML;
 }
 
 function toggleLoadingSpinner() {
@@ -144,6 +152,31 @@ function closeDetail() {
   detailRef.classList.toggle("d_none");
 }
 
-function BubblingProtection(event){
+function windowUp() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function windowDown() {
+  footerRef.scrollIntoView({ behavior: "smooth" });
+}
+
+function BubblingProtection(event) {
   event.stopPropagation();
+}
+
+function setupTabs() {
+  const tabs = document.querySelectorAll(".detail-tab");
+  const tabContents = document.querySelectorAll(".detail-content");
+
+  tabs[0].classList.add("active");
+  tabContents[0].classList.remove("d_none");
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => {
+      tabs.forEach((t) => t.classList.remove("active"));
+      tabContents.forEach((content) => content.classList.add("d_none"));
+      tab.classList.add("active");
+      tabContents[index].classList.remove("d_none");
+    });
+  });
 }
