@@ -132,10 +132,6 @@ footer {
     transform: rotate(180deg);
 }
 
-.arrow-up:hover{
-    
-}
-
 .arrow-down{
     cursor: pointer;
     width:50px;
