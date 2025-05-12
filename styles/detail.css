@@ -94,7 +94,12 @@
   background-color: #000;
 }
 
-.detail-moves {
-  overflow: hidden;
-white-space: nowrap;
+.detail-content {
+  width: 95%;
+  height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  scrollbar-color: rgb(121, 121, 121) rgb(184, 184, 184);
 }
+

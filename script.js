@@ -91,8 +91,16 @@ function renderDetails(id) {
   let icons = renderIcons(data);
   let aboutData = getDetailData(data);
   let baseStats = getBaseStats(data);
-   let movesData = getMovesData(data); // Moves List
-  detailRef.innerHTML = getDetailTemplate(data, icons, aboutData, baseStats, movesData);
+  let movesData = getMovesData(data);
+  let gamesData = getGamesData(data);
+  detailRef.innerHTML = getDetailTemplate(
+    data,
+    icons,
+    aboutData,
+    baseStats,
+    movesData,
+    gamesData
+  );
   setupTabs();
 }
 
@@ -128,13 +136,23 @@ function getBaseStats(data) {
 }
 
 function getMovesData(data) {
-  let moves = data.pokeData.moves
+  let moves = data.pokeData.moves;
   let movesHTML = "";
   for (let i = 0; i < moves.length; i++) {
     const element = moves[i].move.name;
-    movesHTML += `<li><strong>${capitalLetter(element)}</li>`
+    movesHTML += `<li><strong>${capitalLetter(element)}</strong></li>`;
   }
   return movesHTML;
+}
+
+function getGamesData(data) {
+  let games = data.pokeData.game_indices;
+  let gamesHTML = "";
+  for (let i = 0; i < games.length; i++) {
+    const element = games[i].version.name;
+    gamesHTML += `<li><strong>${capitalLetter(element)}</strong></li>`;
+  }
+  return gamesHTML;
 }
 
 function toggleLoadingSpinner() {

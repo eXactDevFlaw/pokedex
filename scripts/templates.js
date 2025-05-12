@@ -13,7 +13,7 @@ function getCardTemplate(data, icons) {
     </div>`;
 }
 
-function getDetailTemplate(data, icons, aboutData, baseStats, movesData) {
+function getDetailTemplate(data, icons, aboutData, baseStats, movesData, gamesData) {
   console.log(data)
   return /*HTML*/ `
     <div class="detail d_flex_center">
@@ -32,13 +32,13 @@ function getDetailTemplate(data, icons, aboutData, baseStats, movesData) {
           <div class="detail-navigation">
             <div class="detail-tab active">About</div>
             <div class="detail-tab">Base Stats</div>
-            <div class="detail-tab">Names</div>
+            <div class="detail-tab">Games</div>
             <div class="detail-tab">Moves</div>
           </div>
           <div class="detail-content">${getAboutTemplate(aboutData)}</div>
           <div class="detail-content d_none">${getBaseStatsTemplate(baseStats)}</div>
-          <div class="detail-content d_none">Names</div>
-          <div class="detail-content detail-moves d_none">${movesData}</div>
+          <div class="detail-content d_none">${gamesData}</div>
+          <div class="detail-content d_none">${movesData}</div>
         </div>
       </div>
     </div>
@@ -48,17 +48,15 @@ function getDetailTemplate(data, icons, aboutData, baseStats, movesData) {
 function getAboutTemplate(aboutData) {
   return /*HTML*/`
     <div>
-      <p><strong>Height:</strong> ${aboutData.height}</p>
-      <p><strong>Weight:</strong> ${aboutData.weight}</p>
-      <p><strong>Abilities:</strong> ${aboutData.abilities}</p>
+      <li><strong>Height:</strong> ${aboutData.height} inch.</li>
+      <li><strong>Weight:</strong> ${aboutData.weight}</li>
+      <li><strong>Abilities:</strong> ${aboutData.abilities}</li>
     </div>
   `;
 }
 
 function getBaseStatsTemplate(baseStats) {
   return /*HTML*/`
-    <ul>
       ${baseStats.map((stat) => `<li><strong>${capitalLetter(stat.name)}:</strong> ${stat.value}</li>`).join("")}
-    </ul>
   `;
 }
