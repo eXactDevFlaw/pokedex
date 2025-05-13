@@ -14,11 +14,10 @@ function getCardTemplate(data, icons) {
 }
 
 function getDetailTemplate(data, icons, aboutData, baseStats, movesData, gamesData) {
-  console.log(data)
   return /*HTML*/ `
     <div class="detail d_flex_center_row">
       <div class="margin_0" onclick="BubblingProtection(event)">
-      <img class="arrow-left" src="./assets/icon/arrow.svg" alt="arrow left" onclick="backward(${data.pokeData.id})">
+      <img id="arrow-left" class="arrow-left" src="./assets/icon/arrow.svg" alt="arrow left" onclick="backward(${data.pokeData.id})">
       </div>
       <div class="detail-container bg-${data.pokeData.types[0].type.name}"  onclick="BubblingProtection(event)">
         <div class="detail-head d_flex">
@@ -45,7 +44,7 @@ function getDetailTemplate(data, icons, aboutData, baseStats, movesData, gamesDa
         </div>
       </div>
       <div class="margin_0" onclick="BubblingProtection(event)">
-      <img class="arrow-right" src="./assets/icon/arrow.svg" alt="arrow right" onclick="forward(${data.pokeData.id})">
+      <img id="arrow-right" class="arrow-right" src="./assets/icon/arrow.svg" alt="arrow right" onclick="forward(${data.pokeData.id})">
       </div>
     </div>
   `;

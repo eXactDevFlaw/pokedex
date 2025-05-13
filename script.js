@@ -10,6 +10,8 @@ const contentRef = document.getElementById("content");
 const detailRef = document.getElementById("detail");
 const loadingRef = document.getElementById("loading-spinner");
 const footerRef = document.getElementById("footer");
+const arrowLeftRef = document.getElementById("arrow-left");
+const arrowRightRef = document.getElementById("arrow-right");
 
 async function initData(loadStart, loadCount) {
   toggleLoadingSpinner();
@@ -28,7 +30,7 @@ async function fetchData(loadStart, loadCount) {
     let responseJson = await response.json();
     fetchedData.raw = responseJson.results;
   } catch (error) {
-    console.error("Fehler beim Abrufen der Daten:", error);
+    console.error("Error on load:", error);
   }
 }
 
@@ -88,6 +90,7 @@ function renderDetails(id) {
   detailRef.classList.remove("d_none");
   detailData(id);
   setupTabs();
+  checkArrow(id);
 }
 
 function detailData(id) {
@@ -195,6 +198,7 @@ function setupTabs() {
 }
 
 function backward(id) {
+  console.log(id);
   if (id <= 1) {
     // Do nothing
   }else{
@@ -204,8 +208,24 @@ function backward(id) {
 }
 
 function forward(id) {
-  if ( id <= 1302) {
+  if (id < fetchedData.sorted.length) {
     let forwardID = id + 1;
     return renderDetails(forwardID); 
-  } 
+  }else{
+    // Do nothing
+  }
+}
+
+function checkArrow(id) {
+  console.log(id);
+  if (id = 1) {
+    arrowLeftRef.classList.add("d_none");
+  } else {
+    arrowLeftRef.classList.remove("d_none");
+  }
+  if (id >= fetchedData.sorted.length) {
+    arrowRightRef.classList.add("d_none");
+  } else {
+    arrowRightRef.classList.remove("d_none");
+  }
 }

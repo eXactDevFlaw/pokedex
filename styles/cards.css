@@ -27,6 +27,7 @@
 .card-body img {
     height: 170px;
     width: 100%;
+    filter: drop-shadow(10px 10px 10px #000);
 }
 
 .card-class {
