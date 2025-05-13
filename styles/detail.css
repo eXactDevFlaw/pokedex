@@ -6,12 +6,12 @@
   height: 100vh;
   width: 100%;
   background: rgba(0, 0, 0, 0.7);
-  flex-direction: column;
+  display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .detail-container {
+  margin: 0;
   border-radius: 30px;
   width: 400px;
   height: 600px;
@@ -97,7 +97,7 @@
 .detail-content {
   width: 95%;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-width: thin;
   scroll-behavior: smooth;
   scrollbar-color: rgb(121, 121, 121) rgb(184, 184, 184);

@@ -144,3 +144,15 @@ footer {
     display: flex;
     flex-direction: column;
 }
+
+.arrow-left{
+    cursor: pointer;
+    width: 50px;
+    transform: rotate(90deg);
+}
+
+.arrow-right{
+    cursor: pointer;
+    width: 50px;
+    transform: rotate(270deg);
+}

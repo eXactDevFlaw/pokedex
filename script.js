@@ -83,9 +83,14 @@ function getIconSrc(type) {
 }
 
 function renderDetails(id) {
-  document.body.classList.toggle("no_scroll");
-  contentRef.classList.toggle("no_hover");
-  detailRef.classList.toggle("d_none");
+  document.body.classList.add("no_scroll");
+  contentRef.classList.add("no_hover");
+  detailRef.classList.remove("d_none");
+  detailData(id);
+  setupTabs();
+}
+
+function detailData(id) {
   let correctID = id - 1;
   let data = fetchedData.sorted[correctID];
   let icons = renderIcons(data);
@@ -93,15 +98,7 @@ function renderDetails(id) {
   let baseStats = getBaseStats(data);
   let movesData = getMovesData(data);
   let gamesData = getGamesData(data);
-  detailRef.innerHTML = getDetailTemplate(
-    data,
-    icons,
-    aboutData,
-    baseStats,
-    movesData,
-    gamesData
-  );
-  setupTabs();
+  detailRef.innerHTML = getDetailTemplate(data,icons,aboutData,baseStats,movesData,gamesData);
 }
 
 function getDetailData(data) {
@@ -118,8 +115,6 @@ function getDetailData(data) {
         aboutData.abilities += ", ";
       }
     }
-  } else {
-    aboutData.abilities = "No abilities found";
   }
   return aboutData;
 }
@@ -197,4 +192,20 @@ function setupTabs() {
       tabContents[index].classList.remove("d_none");
     });
   });
+}
+
+function backward(id) {
+  if (id <= 1) {
+    // Do nothing
+  }else{
+    let backwardID = id - 1;
+    return renderDetails(backwardID);
+  }
+}
+
+function forward(id) {
+  if ( id <= 1302) {
+    let forwardID = id + 1;
+    return renderDetails(forwardID); 
+  } 
 }
