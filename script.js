@@ -5,11 +5,13 @@ let fetchedData = {
   raw: [],
   sorted: [],
 };
+let searchData = []
 
 const contentRef = document.getElementById("content");
 const detailRef = document.getElementById("detail");
 const loadingRef = document.getElementById("loading-spinner");
 const footerRef = document.getElementById("footer");
+
 
 async function initData(loadStart, loadCount) {
   toggleLoadingSpinner();
@@ -18,6 +20,7 @@ async function initData(loadStart, loadCount) {
   sortBuffer();
   toggleLoadingSpinner();
   renderCards();
+  searchPokemon();
 }
 
 async function fetchData(loadStart, loadCount) {
@@ -47,7 +50,7 @@ function sortBuffer() {
   });
 }
 
-function renderCards() {
+function renderCards(id) {
   for (let i = latestRenderIndex; i < fetchedData.sorted.length; i++) {
     let data = fetchedData.sorted[i];
     let icons = renderIcons(data);
@@ -196,7 +199,6 @@ function setupTabs() {
 }
 
 function backward(id) {
-  console.log(id);
   if (id <= 1) {
     // Do nothing
   }else{
@@ -218,7 +220,6 @@ function checkArrow(id) {
   const arrowLeftRef = document.getElementById("arrow-left");
   const arrowRightRef = document.getElementById("arrow-right");
 
-  console.log(id);
   if (id <= 1) {
     arrowLeftRef.classList.add("v_hidden");
   } else {
@@ -229,4 +230,29 @@ function checkArrow(id) {
   } else {
     arrowRightRef.classList.remove("v_hidden");
   }
+}
+
+function searchPokemon() {
+  const searchRef = document.getElementById("searchbar");
+  searchRef.addEventListener("input", (event) => {
+    let value = event.target.value.toLowerCase();
+    console.log(value);
+    if (value.length >= 2) {
+      searchData = fetchedData.sorted.filter((pokemon) => {
+        return pokemon.name.toLowerCase().includes(value);
+      });
+      console.log(searchData);
+      renderCards(searchData);
+      renderSearchedCards();
+    }
+  });
+  
+}
+
+function renderSearchedCards() {
+  contentRef.innerHTML = "";
+  searchData.forEach((data) => {
+    console.log(data.pokeData.id);
+    renderCards(data.pokeData.id);
+  });
 }

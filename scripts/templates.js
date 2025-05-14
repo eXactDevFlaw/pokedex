@@ -65,3 +65,11 @@ function getBaseStatsTemplate(baseStats) {
       ${baseStats.map((stat) => `<li><strong>${capitalLetter(stat.name)}:</strong> ${stat.value}</li>`).join("")}
   `;
 }
+
+  function getNotFilteredPokemonTemplate(){
+    return `
+
+        <h1 class="no-found"> Kein Pokemon gefunden !!!</h1>
+    
+    `
+  }
