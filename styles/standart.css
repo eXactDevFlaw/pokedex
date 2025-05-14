@@ -47,6 +47,14 @@ a {
     display: grid;
 }
 
+.v_visible {
+    visibility: visible;
+}
+
+.v_hidden {
+    visibility: hidden;
+}
+
 .no_scroll {
     overflow: hidden;
 }

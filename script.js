@@ -10,8 +10,6 @@ const contentRef = document.getElementById("content");
 const detailRef = document.getElementById("detail");
 const loadingRef = document.getElementById("loading-spinner");
 const footerRef = document.getElementById("footer");
-const arrowLeftRef = document.getElementById("arrow-left");
-const arrowRightRef = document.getElementById("arrow-right");
 
 async function initData(loadStart, loadCount) {
   toggleLoadingSpinner();
@@ -217,15 +215,18 @@ function forward(id) {
 }
 
 function checkArrow(id) {
+  const arrowLeftRef = document.getElementById("arrow-left");
+  const arrowRightRef = document.getElementById("arrow-right");
+
   console.log(id);
-  if (id = 1) {
-    arrowLeftRef.classList.add("d_none");
+  if (id <= 1) {
+    arrowLeftRef.classList.add("v_hidden");
   } else {
-    arrowLeftRef.classList.remove("d_none");
+    arrowLeftRef.classList.remove("v_hidden");
   }
   if (id >= fetchedData.sorted.length) {
-    arrowRightRef.classList.add("d_none");
+    arrowRightRef.classList.add("v_hidden");
   } else {
-    arrowRightRef.classList.remove("d_none");
+    arrowRightRef.classList.remove("v_hidden");
   }
 }

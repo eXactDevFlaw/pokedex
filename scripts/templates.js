@@ -15,7 +15,7 @@ function getCardTemplate(data, icons) {
 
 function getDetailTemplate(data, icons, aboutData, baseStats, movesData, gamesData) {
   return /*HTML*/ `
-    <div class="detail d_flex_center_row">
+    <div class=" d_flex_center_row">
       <div class="margin_0" onclick="BubblingProtection(event)">
       <img id="arrow-left" class="arrow-left" src="./assets/icon/arrow.svg" alt="arrow left" onclick="backward(${data.pokeData.id})">
       </div>
