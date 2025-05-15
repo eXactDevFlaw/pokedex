@@ -52,7 +52,15 @@ function sortBuffer() {
 
 function renderCards(id) {
   for (let i = latestRenderIndex; i < fetchedData.sorted.length; i++) {
-    let data = fetchedData.sorted[i];
+    let data = "";
+    console.log(id)
+    if(id = ""){
+      data = fetchedData.sorted[id];
+      console.log(data)
+    } else {
+      data = fetchedData.sorted[i];
+      console.log(data)
+    }
     let icons = renderIcons(data);
     contentRef.innerHTML += getCardTemplate(data, icons);
   }
@@ -252,7 +260,8 @@ function searchPokemon() {
 function renderSearchedCards() {
   contentRef.innerHTML = "";
   searchData.forEach((data) => {
+    console.log(data)
     console.log(data.pokeData.id);
-    renderCards(data.pokeData.id);
+    renderCards(data);
   });
 }
