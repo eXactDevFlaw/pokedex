@@ -5,13 +5,12 @@ let fetchedData = {
   raw: [],
   sorted: [],
 };
-let searchData = []
+let searchData = [];
 
 const contentRef = document.getElementById("content");
 const detailRef = document.getElementById("detail");
 const loadingRef = document.getElementById("loading-spinner");
 const footerRef = document.getElementById("footer");
-
 
 async function initData(loadStart, loadCount) {
   toggleLoadingSpinner();
@@ -50,17 +49,10 @@ function sortBuffer() {
   });
 }
 
-function renderCards(id) {
-  for (let i = latestRenderIndex; i < fetchedData.sorted.length; i++) {
-    let data = "";
-    console.log(id)
-    if(id = ""){
-      data = fetchedData.sorted[id];
-      console.log(data)
-    } else {
-      data = fetchedData.sorted[i];
-      console.log(data)
-    }
+function renderCards() {
+  contentRef.innerHTML = "";
+  for (let i = 0; i < fetchedData.sorted.length; i++) {
+    let data = fetchedData.sorted[i];
     let icons = renderIcons(data);
     contentRef.innerHTML += getCardTemplate(data, icons);
   }
@@ -110,7 +102,14 @@ function detailData(id) {
   let baseStats = getBaseStats(data);
   let movesData = getMovesData(data);
   let gamesData = getGamesData(data);
-  detailRef.innerHTML = getDetailTemplate(data,icons,aboutData,baseStats,movesData,gamesData);
+  detailRef.innerHTML = getDetailTemplate(
+    data,
+    icons,
+    aboutData,
+    baseStats,
+    movesData,
+    gamesData
+  );
 }
 
 function getDetailData(data) {
@@ -209,7 +208,7 @@ function setupTabs() {
 function backward(id) {
   if (id <= 1) {
     // Do nothing
-  }else{
+  } else {
     let backwardID = id - 1;
     return renderDetails(backwardID);
   }
@@ -218,8 +217,8 @@ function backward(id) {
 function forward(id) {
   if (id < fetchedData.sorted.length) {
     let forwardID = id + 1;
-    return renderDetails(forwardID); 
-  }else{
+    return renderDetails(forwardID);
+  } else {
     // Do nothing
   }
 }
@@ -242,26 +241,42 @@ function checkArrow(id) {
 
 function searchPokemon() {
   const searchRef = document.getElementById("searchbar");
-  searchRef.addEventListener("input", (event) => {
-    let value = event.target.value.toLowerCase();
-    console.log(value);
-    if (value.length >= 2) {
-      searchData = fetchedData.sorted.filter((pokemon) => {
-        return pokemon.name.toLowerCase().includes(value);
-      });
-      console.log(searchData);
-      renderCards(searchData);
-      renderSearchedCards();
-    }
+  searchRef.addEventListener("input", handleSearchInput);
+}
+
+function handleSearchInput(event) {
+  let value = event.target.value.toLowerCase();
+  if (value.length < 3) {
+    showAllPokemons();
+    return;
+  }
+  filterAndRenderPokemons(value);
+}
+
+function showAllPokemons() {
+  contentRef.innerHTML = "";
+  document.getElementById("load-more-btn").classList.remove('v_hidden');
+  renderCards();
+}
+
+function filterAndRenderPokemons(value) {
+  searchData = fetchedData.sorted.filter((pokemon) => {
+    return pokemon.name.toLowerCase().includes(value);
   });
-  
+  if (searchData.length > 0) {
+    renderSearchedCards();
+    document.getElementById("load-more-btn").classList.add('v_hidden');
+  } else {
+    document.getElementById("load-more-btn").classList.add('v_hidden');
+    contentRef.innerHTML = getNothingFound();
+  }
 }
 
 function renderSearchedCards() {
   contentRef.innerHTML = "";
   searchData.forEach((data) => {
-    console.log(data)
-    console.log(data.pokeData.id);
-    renderCards(data);
+    console.log(data);
+    let icons = renderIcons(data);
+    contentRef.innerHTML += getCardTemplate(data, icons);
   });
 }

@@ -66,10 +66,10 @@ function getBaseStatsTemplate(baseStats) {
   `;
 }
 
-  function getNotFilteredPokemonTemplate(){
-    return `
-
-        <h1 class="no-found"> Kein Pokemon gefunden !!!</h1>
-    
+  function getNothingFound(){
+    return /*HTML*/`
+      <div class="nothing-found">
+        <h1> Nothing was found in our database. Try something else!</h1>
+      </div>  
     `
-  }
+  };

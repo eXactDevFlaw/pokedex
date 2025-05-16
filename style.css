@@ -45,6 +45,7 @@ header input {
 }
 
 main {
+    min-height: calc(100vh - 300px);
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -155,4 +156,8 @@ footer {
     cursor: pointer;
     width: 50px;
     transform: rotate(270deg);
+}
+
+.nothing-found {
+    min-height: calc(100vh - 400px);
 }
