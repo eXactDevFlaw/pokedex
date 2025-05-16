@@ -15,11 +15,13 @@
 </head>
 <body onload="initData()">
     <header class="d_flex_center">
-        <img src="./assets/img/pokeball-seeklogo.png" alt="Pokeball">
-        <h1>Pokédex</h1>
+        <div class="d_flex_center">
+            <h1>Pokédex</h1>
+            <img src="./assets/img/pokeball-seeklogo.png" alt="Pokeball">
+        </div>
         <input type="search" name="searchbar" id="searchbar" placeholder="search ... ( min 3 letters )" required minlength="3">
     </header>
-    <main class="d_flex">
+    <main class="d_flex max_width_1440">
         <div id="detail" class="detail d_none" onclick="closeDetail()"></div>
         <div id="content" class="content max_width_1440"></div>
         <button id="load-more-btn" onclick="renderMore()">Load More</button>

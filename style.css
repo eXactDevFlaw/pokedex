@@ -160,4 +160,10 @@ footer {
 
 .nothing-found {
     min-height: calc(100vh - 400px);
+    display: flex;
+}
+
+.nothing-found h1 {
+    justify-self: center;
+    align-self: center;
 }
