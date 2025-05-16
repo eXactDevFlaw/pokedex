@@ -275,7 +275,6 @@ function filterAndRenderPokemons(value) {
 function renderSearchedCards() {
   contentRef.innerHTML = "";
   searchData.forEach((data) => {
-    console.log(data);
     let icons = renderIcons(data);
     contentRef.innerHTML += getCardTemplate(data, icons);
   });
